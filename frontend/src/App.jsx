@@ -1,25 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import './App.css'
 
 function App() {
-  const [files, setFiles] = useState([]);
-  const [message, setMessage] = useState('');
+  const [files, setFiles] = useState([])
+  const [savedImgs, setSavedImgs] = useState([])
+  const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    fetchSavedFiles();
+  }, []);
+
+  const fetchSavedFiles = async () => {
+    try {
+      const response = await axios.get('http://localhost:5001/files');
+      setSavedImgs(response.data);
+    } catch (error) {
+      console.error('Failed to fetch saved files', error);
+    }
+  };
 
   const handleSelectFiles = (e) => {
     const selected = e.target.files;
     const files = Array.from(selected)
-
-    const previews = files.map((file) => URL.createObjectURL(file))
-
     setFiles(files);
   }
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    files.forEach((file) => formData.append('files', file));
+
+    try {
+      const response = await axios.post('http://localhost:5001/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      console.log(response.data.message);
+      fetchSavedFiles(); // Refresh saved files after upload
+      setFiles([]); // Clear selected files
+    } catch (error) {
+      console.error('Failed to upload files', error);
+    }
+  };
 
  
   return (
     <>
-      <h1>FitFinder</h1>
+      <h1>Fluffle!</h1>
+      <h2>daily fit checks</h2>
       <div className="card">
         <div class="input-div">
           <p>drag and drop images or <span class="browse">browse</span></p>
@@ -36,14 +64,20 @@ function App() {
         </p>
         
         <form id="saved-form">
-          <div class="header">
+          <div className="header">
             <h3>Saved In Server</h3>
-            <button type="submit">Delete</button>
           </div>
-          <div class="saved-div"></div>
+          <div className="saved-div">
+            {savedImgs.map((fileUrl, index) => (
+              <div key={index} className="saved-item">
+                <img src={`http://localhost:5001${fileUrl}`} alt={`saved-${index}`} className="preview-image" />
+                <p>{fileUrl.split('/').pop()}</p>
+              </div>
+            ))}
+          </div>
         </form>
 
-        <form id="queued-form">
+        <form id="queued-form" onSubmit={handleUpload}>
           <div class="header">
             <h3>Queued in Frontend</h3>
             <button type="submit">Upload</button>

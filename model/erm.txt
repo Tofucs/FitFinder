@@ -1,0 +1,21 @@
+like
+
+pinterest already has a thing where it it will find the articles of clothing in an image
+pretty cool to learn that for web scraping ig?
+
+model
+_________
+input
+-take a single input image
+-use fashion datasets(for identifying style words)
+-use social media datasets(to cross reference comments and feedback with posts of outfits)
+_________
+output
+-classify articles of clothing
+-outputs labels for the "style" or "vibe" for each image
+-outputs label for the techinical fashion critique(color theory, oversize/etc.)
+-outputs labels for recommending improvements to the outfits(this is where it can then search and recommend links)
+
+goal:
+user friendly model that makes it easy to feel good about trying new outfits
+learn!

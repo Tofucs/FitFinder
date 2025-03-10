@@ -18,6 +18,19 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.login-button {
+  margin-top: 20px;
+  padding: 0px;
+  border-color: #00000000;
+  background-color: #ffffff00;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  align-self: center;
+  display: flex;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -115,6 +128,56 @@ button {
   cursor: pointer;
 }
 
+.debug-button {
+  color: black;
+  border-color: #ffffff00;
+  background-color: #aedeebaa;
+}
+
+.big-circle {
+  position: absolute;
+  z-index: 0;
+  
+  top: 20vh;
+  left: 20vh;
+  
+}
+
+.small-circle {
+  position: absolute;
+  top: 31.5vh;
+  left: 31.5vh;
+  
+}
+
+.fancy-camera {
+  position: absolute;
+  z-index: 0;
+  grid-column: 1 / -1; 
+  grid-row: 1 / -1;
+  top: 0vh;
+  left: 0vh;
+  padding: 10px 10px;
+  
+}
+
+.chunk {
+  overflow: hidden;
+}
+
+.home-text {
+  position: relative;
+  z-index: 1;
+}
+
+.circlehaha1 {
+  position: absolute;
+  z-index: 0;
+}
+.circlehaha2 {
+  
+}
+
 .saved-div,
 .queued-div {
   width: 100%;
@@ -167,6 +230,17 @@ button {
 .saved-div .span--hidden,
 .queued-div .span--hidden {
   visibility: hidden;
+}
+
+.container { 
+  display: grid;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensure it takes full height */
+  width: 100vw;  /* Ensure it takes full width */
+  overflow: hidden;
 }
 
 .preview-container {

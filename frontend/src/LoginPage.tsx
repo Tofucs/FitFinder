@@ -3,6 +3,7 @@ import React from 'react'
 import { AnimatePresence, motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
+import ParticlesBackground from "./Particles";
 
 function TopToolbar() {
   return (
@@ -58,16 +59,16 @@ function OpeningSequence() {
     borderRadius: "50%",
   }
   const circlehaha = {
-    width: 520,
-    height: 520,
+    width: 90,
+    height: 90,
     background: "conic-gradient(from 0deg,rgb(171, 138, 227), #e52e71,rgb(171, 138, 227))",
-    maskImage: "radial-gradient(circle, transparent 64%, black 41%)",
-    WebkitMaskImage: "radial-gradient(circle, transparent 64%, black 41%)",
+    maskImage: "radial-gradient(circle, transparent 62%, black 41%)",
+    WebkitMaskImage: "radial-gradient(circle, transparent 62%, black 41%)",
     borderRadius: "50%",
   }
   const circlehaha1 = {
-    width: 340,
-    height: 340,
+    width: 60,
+    height: 60,
     background: "conic-gradient(from 0deg,rgb(138, 193, 227),rgb(46, 229, 214),rgb(138, 193, 227))",
     maskImage: "radial-gradient(circle, transparent 60%, black 41%)",
     WebkitMaskImage: "radial-gradient(circle, transparent 60%, black 41%)",
@@ -91,7 +92,8 @@ function OpeningSequence() {
         <AnimatePresence>
             {!hideLanding && (
                 <div className="container">
-                    
+                        <ParticlesBackground />
+
                     
                         <div className="fancy-camera">
 
@@ -136,7 +138,7 @@ function OpeningSequence() {
                                 </motion.div>
                             </div>
 
-                            <div className="chunk">
+                            {/* <div className="chunk">
                                 <motion.svg
                                 width="100%"
                                 height="100%"
@@ -177,7 +179,7 @@ function OpeningSequence() {
                                 fill="none"
                                     />
                                 </motion.svg>
-                            </div>
+                            </div> */}
                             </motion.div>
                             
                         </div>
@@ -188,7 +190,7 @@ function OpeningSequence() {
                         <div className="title-container">
                             <motion.div
                                 initial={{opacity:0, y: -150}}
-                                animate={{y: [200, -40, 0, -10, -320], opacity:[0,1,1,1,1], transition: {duration: 3.5, ease: "easeInOut",
+                                animate={{y: [1000, 360, 380, 370, 0], opacity:[0,1,1,1,1], transition: {duration: 3.5, ease: "easeInOut",
                                     times: [0, 0.12, 0.24, 0.44, 1]
                                 }}}
                                 exit={{opacity: 0, transition: {duration: 0.6}}}
@@ -204,13 +206,14 @@ function OpeningSequence() {
                                     animate={{
                                         color: ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 1.0)"],
                                         }}>
-                                            Fluffle!
+                                            stlyi
                                         </motion.h1>
                             </motion.div>
                             <motion.div
                                 initial={{ opacity: 0, y: -50 }}
-                                animate={{ opacity: [0,1], y: [50, -15, 0] }}
+                                animate={{ opacity: [0,1], y: [450, 360, 325] }}
                                 transition={{ duration: 2.0, ease: "easeInOut" }}
+                                color="rgba(255,255,255,1"
                                 className="fluffle-container"
                             ><h2>up your style with daily fit checks</h2></motion.div>
                             

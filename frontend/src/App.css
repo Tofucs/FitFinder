@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   text-align: center;
+  background-color: #F2F0EA;
 }
 
 .logo {
@@ -58,7 +59,7 @@
 }
 
 body {
-  font-family: Transforma;
+  font-family: Liter;
   background-color: whitesmoke;
 }
 
@@ -75,12 +76,21 @@ button {
   font-size: 0.9rem;
 }
 
-.meow1 {
+.top {
   grid-area: 1/1;
 }
 
-.meow {
+.landing {
   grid-area: 1/1;
+}
+
+.parallax-content {
+  
+  grid-row: 2 / 3;
+  grid-column: 1;
+  z-index: 0;
+  position: relative;
+  scroll-snap-type: y mandatory;
 }
 
 .top-toolbar {
@@ -90,7 +100,7 @@ button {
   width: 100%;
   height: 150px; 
   overflow: visible;
-  z-index: 9999;
+  z-index: 10001;
 }
 
 .toolbar-content {
@@ -111,21 +121,25 @@ button {
   position: relative;
   y: -50;
   gap: 1rem;
-  color: rgb(255, 255, 255);
+  color: black;
   pointer-events: auto;
   transform: translateY(-70px);
 }
 
 .toolbar-links a {
-  color: white;
+  color: black;
   text-decoration: none;
   font-size: 1.2rem;
   
 }
 
+.self-description {
+  
+}
+
 
 .app-container {
-  display: grid
+  display: grid;
 }
 
 .app {
@@ -192,8 +206,9 @@ button {
   position: absolute;
   z-index: 0;
   
-  top: 19.5vh;
-  left: 60vh;
+  left:0;
+  top:50%;
+  transform: translateY(-50%);
   
 }
 
@@ -205,8 +220,9 @@ button {
 
 .small-circle {
   position: absolute;
-  top: 30.5vh;
-  left: 71.5vh;
+  left: 0;
+  top:50%;
+  transform: translateY(-50%);
   
 }
 
@@ -230,11 +246,18 @@ button {
 }
 
 .title-container {
-  position: relative;
-  color: white;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  position: absolute;
+  color: black;
+  align-items: center;
+  height: 100vh; 
+  width: 100vw;
   z-index: 10000;
 }
+
+
 
 .chunk {
   width: 100%;
@@ -310,12 +333,12 @@ button {
 }
 
 .container { 
-  display: relative;
+  position: relative;
   justify-content: center;
   align-items: center;
   height: 100vh; 
   width: 100vw;  
-  
+  background-color: #F2F0EA;
   overflow: hidden;
 }
 .container-inner {

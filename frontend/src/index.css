@@ -14,8 +14,8 @@
 }
 
 @font-face {
-  font-family: 'Transforma';
-  src: local('Transforma'), url(./fonts/TransformaSans_Trial-Bold.woff2) format('woff2');
+  font-family: 'Liter';
+  src: local('Liter'), url(./fonts/Liter-Regular.woff2) format('woff2');
 }
 
 a {

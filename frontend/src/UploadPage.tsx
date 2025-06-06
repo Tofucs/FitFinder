@@ -6,6 +6,8 @@ import './App.css'
 import React from 'react'
 import { easeInOut } from 'motion'
 
+import TopToolbarLoggedIn from './Components/ToolbarLogin/ToolbarLogin';
+
 function App() {
   const [files, setFiles] = useState<File[]>([])
   const [savedImgs, setSavedImgs] = useState<string[]>([])
@@ -13,8 +15,14 @@ function App() {
   const [showUploadPage, setShowUploadPage] = useState(false);
   const [message, setMessage] = useState('')
   const [colorTheme, setColorTheme] = useState([])
+  const [user, setUser] = useState<{ name: string } | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
     fetchSavedFiles();
   }, []);
 
@@ -55,8 +63,10 @@ function App() {
  
   return (
     <>
-
-
+      {user && <TopToolbarLoggedIn username={user.name} onLogout={() => {
+        localStorage.removeItem("user");
+        navigate("/");
+      }} />}
       <div className="card">
         <div className="input-div">
           <p>drag and drop images or <span className="browse">browse</span></p>

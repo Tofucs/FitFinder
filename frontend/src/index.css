@@ -18,6 +18,11 @@
   src: local('Liter'), url(./fonts/Liter-Regular.woff2) format('woff2');
 }
 
+@font-face {
+  font-family: 'Plaster';
+  src: local('Plaster'), url(./fonts/Plaster-Regular.ttf) format('truetype');
+}
+
 a {
   font-weight: 500;
   color: #646cff;

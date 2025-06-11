@@ -1,14 +1,40 @@
-    // Dashboard.tsx
-    import React, { useEffect, useState } from "react";
-    import { useNavigate } from "react-router-dom";
-    import TopToolbarLoggedIn from "../ToolbarLogin/ToolbarLogin";
-    import './UserDashboard.css'
-    import { AnimatePresence, motion } from "motion/react";
-    import { time } from "motion";
-    
-    import UserOutfitBoard from "../UserPinBoard/UserPinBoard";
+// Dashboard.tsx
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import TopToolbarLoggedIn from "../ToolbarLogin/ToolbarLogin";
+import './UserDashboard.css'
+import { AnimatePresence, motion } from "motion/react";
+import { time } from "motion";
+import { PinData } from '../UserPinBoard/UserPinBoard.tsx';
 
-    interface User {
+import UserOutfitBoard from "../UserPinBoard/UserPinBoard";
+
+
+import testImage1 from '../Assets/test_image_1.jpg';
+import testImage2 from '../Assets/test_image_2.jpeg';
+
+const samplePins: PinData[] = [
+    {
+        id: 1,
+        img_blob: testImage1,
+        favorited: true,
+        date: "2025-05-19",
+    },
+    {
+        id: 3,
+        img_blob: testImage2,
+        favorited: true,
+        date: "2025-05-19",
+    },
+    {
+        id: 2,
+        img_blob: testImage1,
+        favorited: false,
+        date: "2025-05-19",
+    },
+];
+
+interface User {
     name: string;
     username: string;
     date_joined?: string;
@@ -21,9 +47,9 @@
         imageUrl: string;
         date: string;
     };
-    }
+}
 
-    const Dashboard = () => {
+const Dashboard = () => {
     const [user, setUser] = useState<User | null>(null);
     const navigate = useNavigate();
 
@@ -65,7 +91,6 @@
     };
 
     return (
-        <>
         <div className="dashboard">
         {user && (
             <>
@@ -149,6 +174,7 @@
             </div>
 
             <div className="dashboard-body">
+                <UserOutfitBoard pins={samplePins}/>
                 {hasUploadToday() ? (
                 <div className="highlighted-upload">
                     <h4>Your latest outfit recap</h4>
@@ -164,8 +190,6 @@
             </>
         )}
         </div>
-        <UserOutfitBoard/>
-        </>
     );
     };
 

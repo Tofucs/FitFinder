@@ -156,19 +156,19 @@ const Dashboard = () => {
                 className="stat-box"
                 variants={statBoxVariants}>
                     <h3>{user.stats?.streak ?? 0}</h3>
-                    <p>Week Streak</p>
+                    <p>Streak</p>
                 </motion.div>
                 <motion.div 
                     className="stat-box"
                     variants={statBoxVariants}>
                     <h3>{user.stats?.rated ?? "N/A"}</h3>
-                    <p>Most popular vibe</p>
+                    <p>Biggest vibe</p>
                 </motion.div>
                 <motion.div 
                     className="stat-box"
                     variants={statBoxVariants}>
                     <h3>{user.stats?.recommended ?? 0}</h3>
-                    <p>Recommended Outfits</p>
+                    <p>Recommended Pieces</p>
                 </motion.div>
                 </motion.div>
             </div>

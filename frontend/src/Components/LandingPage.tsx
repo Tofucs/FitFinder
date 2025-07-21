@@ -75,10 +75,10 @@ function OpeningSequence({showLogin}) {
                             {showLogin ? (
                             <motion.div
                                 key="login"
-                                initial={{ opacity: 0, y: -50 }}
-                                animate={{ opacity: [0,1], y: [40, 0]}}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: [0,1], x: [20, 0]}}
                                 transition={{ duration: .4, ease: "easeInOut" }}
-                                exit={{ opacity: 0, y: -20 }}
+                                exit={{ opacity: 0, x: 20 }}
                                 color="rgba(255,255,255,1"
                                 className="fluffle-container"
                             ><Login/></motion.div> )
@@ -125,9 +125,7 @@ function LandingPage() {
   }, []);
 
   const handleLogout = () => {
-    // Clear user state
     setUser(null);
-    
   };
 
   return (

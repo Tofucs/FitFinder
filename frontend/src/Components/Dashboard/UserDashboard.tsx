@@ -162,7 +162,7 @@ const Dashboard = () => {
                     className="stat-box"
                     variants={statBoxVariants}>
                     <h3>{user.stats?.rated ?? "N/A"}</h3>
-                    <p>Biggest vibe</p>
+                    <p>Favorite style</p>
                 </motion.div>
                 <motion.div 
                     className="stat-box"

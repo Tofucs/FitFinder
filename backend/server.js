@@ -1,21 +1,49 @@
 const express = require('express')
 const cors = require("cors")
 const bcrypt = require("bcrypt")
+const multer = require("multer")
+const path = require("path")
+const fs = require("fs")
+
+
 const app = express()
+const PORT = process.env.PORT || 4000;
+
 const { pool } = require("./dbConfig")
 require('dotenv').config();
 
+
+//middlewares
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-const PORT = process.env.PORT || 4000;
+//images uploaded
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 app.use(express.urlencoded({extended: false}));
 
 app.get('/', (req, res) => {
-    res.send("Hi");
+  res.send("Hi");
 });
+
+//multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const uploadDir = path.join(__dirname, 'uploads');
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir);
+    }
+    cb(null, uploadDir);
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+const upload = multer({ storage });
+
+
 
 app.post('/api/register', async (req, res)=> {
     const {name, email, pw, confirmpw} = req.body;
@@ -115,20 +143,57 @@ app.post('/api/login', async (req, res) => {
 });
 
 app.get("/api/userinfo", (req, res) => {
-    const storedUser = req.query.user || null;
-  
-    if (!storedUser) {
-      // simulate fetching for now
-      const localUser = {
-        name: "Demo User",
-        username: "demo_user",
-        date_joined: "2024-01-01",
-      };
-      return res.json({ user: localUser });
+  const storedUser = req.query.user || null;
+
+  if (!storedUser) {
+    const localUser = {
+      name: "Demo User",
+      username: "demo_user",
+      date_joined: "2024-01-01",
+    };
+    return res.json({ user: localUser });
+  }
+
+  return res.status(401).json({ message: "Unauthorized" });
+});
+
+//image upload
+app.post('/api/upload', upload.array('files'), async (req, res) => {
+  const { userId } = req.body;
+  if (!userId) {
+    return res.status(400).json({ error: 'Missing userId' });
+  }
+
+  const fileUrls = req.files.map(file => `/uploads/${file.filename}`);
+
+  try {
+    for (const url of fileUrls) {
+      await pool.query(
+        'INSERT INTO user_images (user_id, image_url) VALUES ($1, $2)',
+        [userId, url]
+      );
     }
-  
-    return res.status(401).json({ message: "Unauthorized" });
-  });
+    res.json({ message: 'Files uploaded successfully', files: fileUrls });
+  } catch (err) {
+    console.error('Error saving file info:', err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
+//listing images
+app.get('/api/userimages/:userId', async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const images = await pool.query(
+      'SELECT * FROM user_images WHERE user_id = $1 ORDER BY date_uploaded DESC',
+      [userId]
+    );
+    res.json(images.rows);
+  } catch (err) {
+    console.error('Error fetching images:', err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
 
 
 app.listen(PORT, ()=>{

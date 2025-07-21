@@ -1,6 +1,11 @@
 :root {
     --primary-color: rgba(235, 235, 235, 0.946);
     --black: rgba(29, 36, 42, 0.9);
+    --aqua: rgb(116, 164, 220); 
+    --aqua2: rgb(71, 46, 200); 
+    --gold: rgb(236, 227, 147); 
+    --gold2:rgb(255, 215, 0); 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .wrapper {
@@ -13,7 +18,7 @@
     justify-content: right;
     padding-right: 14vw;
     align-items: center;
-    transform: translate(-50%, -48%);
+    transform: translate(-60%, -48%);
 }
 
 .login-box {
@@ -22,10 +27,10 @@
     height: 550px;
     backdrop-filter: blur(10px);
     border: 2px solid var(rgb(255, 255, 255));
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255);
     border-radius: 15px;
     padding: 0.5em 2.5em 4em 2.5em;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
     z-index: 10000;
 }
@@ -43,8 +48,9 @@
 
 .text {
     color: var(--black);
-    font-size: 48px;
-    font-weight: 600;
+    font-size: 38px;
+    font-weight: 400;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .input {
@@ -80,13 +86,20 @@
     pointer-events: none;
 }
 
+.input-field:focus,
+.input-field:valid {
+    border: 2px solid transparent;
+    background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 1)) padding-box,
+                linear-gradient(45deg, var(--aqua), var(--aqua2)) border-box;
+}
+
 .input-field:focus ~ .label,
 .input-field:valid ~ .label{
     position: absolute;
     border-radius: 20px;
     color: var(--black);
     font-size: 14px;
-    background-color: var(--primary-color);
+    background-image: linear-gradient(135deg, var(--aqua), var(--aqua2));
     padding: 0 10px;
     top: -1.2vh;
     left: 1.2vw;
@@ -126,10 +139,23 @@
     width: 200px;
     height: 50px;
     color: var(--black);
-    background-color: #ececec;
+    background-image: linear-gradient(135deg, var(--aqua2), var(--aqua), var(--gold));
+    background-size: 400% 400%;
     border-radius: 50px;
     font-size: 19px;
+    font-weight: 700;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: waveGradient 10s ease-in-out infinite;
     font-weight: 600;
+    transition: transform 0.2s ease;
+}
+
+@keyframes waveGradient {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 20% 50%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 80% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .submit:hover {

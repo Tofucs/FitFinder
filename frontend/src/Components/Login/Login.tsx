@@ -43,7 +43,7 @@ const Login = () => {
         <div className="wrapper">
             <div className="login-box">
                 <div className="header">
-                    <div className="text">Login</div>
+                    <div className="text">Sign In</div>
                 </div>
                 <div className="inputs">
                     <div className="input">
@@ -70,7 +70,7 @@ const Login = () => {
                         transition: {duration: 0.3},
                     }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={handleLogin}>Login</motion.div>
+                    onClick={handleLogin}>Sign In</motion.div>
                 </div>
                 {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
                 <div className="register">

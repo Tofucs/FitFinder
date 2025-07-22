@@ -133,11 +133,7 @@ function LandingPage() {
     <div className="app-container">
       
       <div className="landing">
-        {user ? (
-          <TopToolbarLoggedIn username={user.name} onLogout={handleLogout}/> 
-        ) : (
-          <TopToolbar onLoginClick={toggleLogin} />
-        )}
+          <TopToolbar onLoginClick={toggleLogin} onLogout={handleLogout} isLoggedIn={!!user} />
         <OpeningSequence showLogin={showLogin} />
       </div>
     

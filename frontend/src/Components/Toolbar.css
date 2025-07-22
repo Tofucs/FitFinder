@@ -1,3 +1,17 @@
+:root {
+    --primary-color: rgba(235, 235, 235, 0.946);
+    --black: rgba(29, 36, 42, 0.9);
+    --aqua: rgb(116, 164, 220); 
+    --aqua2: rgb(71, 46, 200); 
+    --gold: rgb(236, 227, 147); 
+    --gold2:rgb(255, 215, 0); 
+}
+
+a {
+    color: inherit;
+  text-decoration: none;
+}
+
 .taskbar {
     position: fixed;
     top: 0;
@@ -32,6 +46,8 @@
 
 .left-section {
     position: relative;
+    border: none !important;
+    outline: none;
 }
 
 .hamburger-btn {
@@ -46,6 +62,7 @@
     color: #333;
     transition: all 0.2s ease;
     box-shadow: none !important;
+    outline: none;
 }
 
 .hamburger-btn:hover {
@@ -59,6 +76,10 @@
     width: 20px;
     height: 16px;
     transition: all 0.3s ease;
+}
+
+.hamburger-btn:focus {
+  outline: none;
 }
 
 .hamburger-icon span {
@@ -123,7 +144,7 @@
     padding: 5px 5px;
     background: transparent;
     border: none !important;
-    border-radius: 0px;
+    border-radius: 1px;
     color: #333;
     font-size: 14px;
     font-weight: 700;
@@ -131,6 +152,24 @@
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: none !important;
+}
+
+.sign-out-btn {
+    padding: 5px 5px;
+    background: transparent;
+    border: none !important;
+    border-radius: 1px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: none !important;
+}
+
+.sign-out-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.3);
 }
 
 .sign-in-btn:hover {
@@ -141,15 +180,18 @@
 .divider {
     width: 1px;
     height: 24px;
-    background: rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(180deg, var(--aqua), rgba(0,0,0,0.3));
 }
 
 .upload-btn {
     display: flex;
     align-items: center;
+    margin-left: 8px;
     gap: 8px;
-    padding: 5px 16px;
-    background: #007bff;
+    padding: 5px 15px;
+    background-image: repeating-linear-gradient(45deg, var(--aqua), var(--aqua2), var(--aqua));
+    background-position: 0% 0%;
+    background-size: 300% 100%;
     border: none;
     border-radius: 8px;
     color: white;
@@ -161,9 +203,8 @@
     box-shadow: none !important;
 }
 
-.upload-btn:hover {
-    background: #9140d3;
-    transform: translateY(-1px);
+.upload-text{
+    color: white;
 }
 
 .upload-btn:active {

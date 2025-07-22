@@ -1,7 +1,7 @@
 // Dashboard.tsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import TopToolbarLoggedIn from "../ToolbarLogin/ToolbarLogin";
+import TopToolbar from "../Toolbar.tsx";
 import './UserDashboard.css'
 import { AnimatePresence, motion } from "motion/react";
 import { time } from "motion";
@@ -94,12 +94,13 @@ const Dashboard = () => {
         <div className="dashboard">
         {user && (
             <>
-            <TopToolbarLoggedIn
-                username={user.username}
+            <TopToolbar
                 onLogout={() => {
                 localStorage.removeItem("user");
                 navigate("/");
                 }}
+                isLoggedIn = {true}
+                onLoginClick={() => {}}
             />
 
             <div className="profile-header">
